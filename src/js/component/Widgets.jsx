@@ -16,7 +16,7 @@ export const Card_Template = ({ uid, nombre }) => {
     return (
         <div className="card shadow-sm border-0 rounded" style={{ width: "13rem", height: "14rem", overflow: "hidden" }}>
             <img
-                src={`https://starwars-visualguide.com/#/characters/${uid}.jpg`}
+                src={`https://starwars-visualguide.com/assets/img/characters/${uid}.jpg`}
                 className="card-img-top"
                 alt="Card image"
                 style={{ height: "7rem", objectFit: "cover", borderRadius: "0.5rem 0.5rem 0 0" }}
