@@ -1,9 +1,11 @@
 import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
+import { Sidebar } from "../component/Components_Main.jsx";
 
 export const Home = () => (
 	<div className="text-center mt-5">
+		<Sidebar/>
 		<h1>Hello Rigo!</h1>
 		<p>
 			<img src={rigoImage} />
