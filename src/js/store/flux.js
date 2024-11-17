@@ -5,7 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			wars: [],
 			people: {},
 			ruta_img: '',
-			img_card: ''
+			img_card: '',
+			favoritos: []
 
 		},
 		actions: {
@@ -29,6 +30,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getOption: () => {
 				return getStore().option;
+			},
+			addFavorito: (nombre) => {
+				const store = getStore();
+				if (!store.favoritos.includes(nombre)) {
+					setStore({ favoritos: [...store.favoritos, nombre] });
+				}
+			},
+			removeFavorito: (nombre) => {
+				const store = getStore();
+				setStore({
+					favoritos: store.favoritos.filter((item) => item !== nombre)
+				});
 			},
 			obtener_datos_personajes: async () => {
 				fetch("https://www.swapi.tech/api/people/")

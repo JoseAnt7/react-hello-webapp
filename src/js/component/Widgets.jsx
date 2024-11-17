@@ -1,40 +1,46 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const Card_Template = ({ uid, nombre, img }) => {
     const navigate = useNavigate();
-
     const { store, actions } = useContext(Context);
+    const [isFavorito, setIsFavorito] = useState(false);
 
     const imagen = `${img}` + `${uid}` + `.jpg`;
 
+    const handleFavorito = () => {
+        setIsFavorito(!isFavorito);
+        if (!isFavorito) {
+            actions.addFavorito(nombre);
+        } else {
+            actions.removeFavorito(nombre);
+        }
+    };
+
     const handleLearnMore = () => {
         switch (actions.getOption()) {
-            case 'PERSONAJES':
+            case "PERSONAJES":
                 actions.obtener_detalle_personaje(uid);
                 actions.set_ImgCard(imagen);
                 navigate(`/people/${uid}`);
                 break;
-            case 'LOCALIZACIONES':
+            case "LOCALIZACIONES":
                 actions.obtener_detalle_planeta(uid);
                 actions.set_ImgCard(imagen);
                 navigate(`/planets/${uid}`);
                 break;
-
-            case 'ESPECIES':
+            case "ESPECIES":
                 actions.obtener_detalle_especies(uid);
                 actions.set_ImgCard(imagen);
                 navigate(`/species/${uid}`);
                 break;
-
-            case 'VEHICULOS':
+            case "VEHICULOS":
                 actions.obtener_detalles_vehiculos(uid);
                 actions.set_ImgCard(imagen);
                 navigate(`/vehicles/${uid}`);
                 break;
-
-            case 'NAVES':
+            case "NAVES":
                 actions.obtener_detalles_naves(uid);
                 actions.set_ImgCard(imagen);
                 navigate(`/starships/${uid}`);
@@ -42,7 +48,6 @@ export const Card_Template = ({ uid, nombre, img }) => {
             default:
                 break;
         }
-
     };
 
     return (
@@ -53,8 +58,20 @@ export const Card_Template = ({ uid, nombre, img }) => {
                 alt="Card image"
                 style={{ height: "7rem", objectFit: "cover", borderRadius: "0.5rem 0.5rem 0 0" }}
             />
-            <div className="card-body d-flex flex-column align-items-center" style={{ padding: "0.75rem", backgroundColor: "#f9f9f9" }}>
-                <h5 className="card-title text-center mb-2" style={{ fontSize: "1rem", fontWeight: "bold", color: "#333" }}>{nombre}</h5>
+            <div
+                className="card-body d-flex flex-column align-items-center"
+                style={{ padding: "0.75rem", backgroundColor: "#f9f9f9" }}
+            >
+                <h5 className="card-title text-center mb-2" style={{ fontSize: "1rem", fontWeight: "bold", color: "#333" }}>
+                    {nombre}
+                </h5>
+                <button
+                    className={`btn ${isFavorito ? "btn-danger" : "btn-outline-secondary"} btn-sm`}
+                    style={{ borderRadius: "50%", padding: "0.5rem" }}
+                    onClick={handleFavorito}
+                >
+                    ♥
+                </button>
                 <a
                     href="#"
                     className="btn btn-outline-primary btn-sm mt-auto"
@@ -67,6 +84,3 @@ export const Card_Template = ({ uid, nombre, img }) => {
         </div>
     );
 };
-
-
-

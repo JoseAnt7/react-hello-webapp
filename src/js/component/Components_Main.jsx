@@ -1,11 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Card_Template } from "./Widgets.jsx";
 import { Vista_Content } from "../views/Vista_personalizada.jsx";
 import { Context } from "../store/appContext.js";
 
 export const Sidebar = ({ onMenuClick }) => {
+    const { store, actions } = useContext(Context);
 
-    const { actions, store } = useContext(Context);
+
+    const [activeOption, setActiveOption] = useState('PERSONAJES');
+
+    // Función para manejar clics en el menú
+    const handleMenuClick = (option, actionCallback, imgPath) => {
+        setActiveOption(option);
+        onMenuClick(option);
+        actionCallback();
+        actions.setOption(option);
+        actions.setImg(imgPath);
+    };
 
     return (
         <div className="d-flex flex-column flex-shrink-0 p-3 bg-dark text-white" style={{ width: "280px", height: "100vh" }}>
@@ -16,58 +27,47 @@ export const Sidebar = ({ onMenuClick }) => {
             <hr />
             <ul className="nav nav-pills flex-column mb-auto">
                 <li className="nav-item">
-                    <a href="#" className="nav-link active" onClick={() => {
-                        onMenuClick('PERSONAJES');
-                        actions.obtener_datos_personajes();
-                        actions.setOption('PERSONAJES');
-                        actions.setImg(`https://starwars-visualguide.com/assets/img/characters/`);
-                    }}>
+                    <a
+                        href="#"
+                        className={`nav-link ${activeOption === 'PERSONAJES' ? 'active' : 'text-white'}`}
+                        onClick={() => handleMenuClick('PERSONAJES', actions.obtener_datos_personajes, `https://starwars-visualguide.com/assets/img/characters/`)}
+                    >
                         PERSONAJES
                     </a>
                 </li>
                 <li>
-                    <a href="#" className="nav-link text-white" onClick={() => {
-                        onMenuClick('LOCALIZACIONES');
-                        actions.obtener_datos_planetas();
-                        actions.setOption('LOCALIZACIONES');
-                        actions.setImg(`https://starwars-visualguide.com/assets/img/planets/`);
-
-                    }}>
-                        <svg className="bi me-2" width="16" height="16"><use xlinkHref="#grid"></use></svg>
+                    <a
+                        href="#"
+                        className={`nav-link ${activeOption === 'LOCALIZACIONES' ? 'active' : 'text-white'}`}
+                        onClick={() => handleMenuClick('LOCALIZACIONES', actions.obtener_datos_planetas, `https://starwars-visualguide.com/assets/img/planets/`)}
+                    >
                         LOCALIZACIONES
                     </a>
                 </li>
                 <li>
-                    <a href="#" className="nav-link text-white" onClick={() => {
-                        onMenuClick('ESPECIES');
-                        actions.obtener_datos_especies();
-                        actions.setOption('ESPECIES');
-                        actions.setImg(`https://starwars-visualguide.com/assets/img/species/`);
-                    }}>
-                        <svg className="bi me-2" width="16" height="16"><use xlinkHref="#people-circle"></use></svg>
+                    <a
+                        href="#"
+                        className={`nav-link ${activeOption === 'ESPECIES' ? 'active' : 'text-white'}`}
+                        onClick={() => handleMenuClick('ESPECIES', actions.obtener_datos_especies, `https://starwars-visualguide.com/assets/img/species/`)}
+                    >
                         ESPECIES
                     </a>
                 </li>
                 <li>
-                    <a href="#" className="nav-link text-white" onClick={() => {
-                        onMenuClick('VEHICULOS');
-                        actions.obtener_datos_vehiculos();
-                        actions.setOption('VEHICULOS');
-                        actions.setImg(`https://starwars-visualguide.com/assets/img/vehicles/`);
-
-                    }}>
-                        <svg className="bi me-2" width="16" height="16"><use xlinkHref="#people-circle"></use></svg>
+                    <a
+                        href="#"
+                        className={`nav-link ${activeOption === 'VEHICULOS' ? 'active' : 'text-white'}`}
+                        onClick={() => handleMenuClick('VEHICULOS', actions.obtener_datos_vehiculos, `https://starwars-visualguide.com/assets/img/vehicles/`)}
+                    >
                         VEHICULOS
                     </a>
                 </li>
                 <li>
-                    <a href="#" className="nav-link text-white" onClick={() => {
-                        onMenuClick('NAVES');
-                        actions.obtener_datos_naves();
-                        actions.setOption('NAVES');
-                        actions.setImg(`https://starwars-visualguide.com/assets/img/starships/`);
-                    }}>
-                        <svg className="bi me-2" width="16" height="16"><use xlinkHref="#people-circle"></use></svg>
+                    <a
+                        href="#"
+                        className={`nav-link ${activeOption === 'NAVES' ? 'active' : 'text-white'}`}
+                        onClick={() => handleMenuClick('NAVES', actions.obtener_datos_naves, `https://starwars-visualguide.com/assets/img/starships/`)}
+                    >
                         NAVES
                     </a>
                 </li>
@@ -86,9 +86,35 @@ export const Sidebar = ({ onMenuClick }) => {
                     <li><a className="dropdown-item" href="#">Sign out</a></li>
                 </ul>
             </div>
+            <div className="dropdown mt-3">
+                <button
+                    className="btn btn-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownFavoritos"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+                    Favoritos
+                </button>
+                <ul className="dropdown-menu" aria-labelledby="dropdownFavoritos">
+                    {store.favoritos.length > 0 ? (
+                        store.favoritos.map((item, index) => (
+                            <li key={index}>
+                                <a className="dropdown-item" href="#">
+                                    {item}
+                                </a>
+                            </li>
+                        ))
+                    ) : (
+                        <li>
+                            <span className="dropdown-item text-muted">No hay favoritos</span>
+                        </li>
+                    )}
+                </ul>
+            </div>
         </div>
     );
-}
+};
 
 export const Window_content = ({ componenteSeleccionado }) => {
     return (
