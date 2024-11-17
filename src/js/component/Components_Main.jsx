@@ -71,17 +71,6 @@ export const Sidebar = ({ onMenuClick }) => {
                         NAVES
                     </a>
                 </li>
-                <li>
-                    <a href="#" className="nav-link text-white" onClick={() => {
-                        onMenuClick('PELICULAS');
-                        actions.obtener_datos_peliculas();
-                        actions.setOption('PELICULAS');
-                        actions.setImg(`https://starwars-visualguide.com/assets/img/films/`);
-                    }}>
-                        <svg className="bi me-2" width="16" height="16"><use xlinkHref="#people-circle"></use></svg>
-                        PELÍCULAS
-                    </a>
-                </li>
             </ul>
             <hr />
             <div className="dropdown">

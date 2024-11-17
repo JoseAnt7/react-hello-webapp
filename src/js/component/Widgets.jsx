@@ -7,29 +7,36 @@ export const Card_Template = ({ uid, nombre, img }) => {
 
     const { store, actions } = useContext(Context);
 
+    const imagen = `${img}` + `${uid}` + `.jpg`;
+
     const handleLearnMore = () => {
         switch (actions.getOption()) {
             case 'PERSONAJES':
                 actions.obtener_detalle_personaje(uid);
+                actions.set_ImgCard(imagen);
                 navigate(`/people/${uid}`);
                 break;
             case 'LOCALIZACIONES':
                 actions.obtener_detalle_planeta(uid);
+                actions.set_ImgCard(imagen);
                 navigate(`/planets/${uid}`);
                 break;
 
             case 'ESPECIES':
                 actions.obtener_detalle_especies(uid);
+                actions.set_ImgCard(imagen);
                 navigate(`/species/${uid}`);
                 break;
 
             case 'VEHICULOS':
                 actions.obtener_detalles_vehiculos(uid);
+                actions.set_ImgCard(imagen);
                 navigate(`/vehicles/${uid}`);
                 break;
 
             case 'NAVES':
                 actions.obtener_detalles_naves(uid);
+                actions.set_ImgCard(imagen);
                 navigate(`/starships/${uid}`);
                 break;
             default:
@@ -41,7 +48,7 @@ export const Card_Template = ({ uid, nombre, img }) => {
     return (
         <div className="card shadow-sm border-0 rounded" style={{ width: "13rem", height: "14rem", overflow: "hidden" }}>
             <img
-                src={`${img}` + `${uid}` + `.jpg`}
+                src={imagen}
                 className="card-img-top"
                 alt="Card image"
                 style={{ height: "7rem", objectFit: "cover", borderRadius: "0.5rem 0.5rem 0 0" }}

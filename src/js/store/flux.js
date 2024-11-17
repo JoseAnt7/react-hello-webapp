@@ -4,9 +4,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			option: '',
 			wars: [],
 			people: {},
-			ruta_img: ''
+			ruta_img: '',
+			img_card: ''
+
 		},
 		actions: {
+			set_ImgCard: (texto) => {
+				setStore({ img_card: texto })
+				console.log(getStore().img_card);
+			},
+			get_ImgCard: () => {
+				return getStore().img_card;
+			},
 			setImg: (texto) => {
 				setStore({ ruta_img: texto })
 				console.log(getStore().ruta_img);
@@ -93,13 +102,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(`https://www.swapi.tech/api/vehicles/${id}`)
 					.then(response => response.json())
 					.then(data => { setStore({ people: data.result.properties }); })
-					.catch(error => console.error("Ha ocurrido un error" + error)
-					)
-			},
-			obtener_datos_peliculas: async () => {
-				fetch("https://www.swapi.tech/api/films")
-					.then(response => response.json())
-					.then(data => { setStore({ wars: data.results }); })
 					.catch(error => console.error("Ha ocurrido un error" + error)
 					)
 			}
