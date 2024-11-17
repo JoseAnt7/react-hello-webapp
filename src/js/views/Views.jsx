@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 export const People = () => {
     const { store } = useContext(Context);
 
     return (
         <div
-            className="d-flex justify-content-center align-items-center"
+            className="d-flex justify-content-center align-items-center flex-column"
             style={{
                 backgroundImage: "url('https://i.gifer.com/6njR.gif')",
                 backgroundRepeat: "repeat-x",
@@ -16,6 +17,9 @@ export const People = () => {
                 height: "100vh"
             }}
         >
+            <Link to="/" className="btn btn-primary mb-4 ml-4">
+                Volver a la Página Principal
+            </Link>
             <div
                 className="d-flex bg-dark text-light p-3"
                 style={{
@@ -92,7 +96,7 @@ export const Planets = () => {
 
     return (
         <div
-            className="d-flex justify-content-center align-items-center"
+            className="d-flex justify-content-center align-items-center flex-column"
             style={{
                 backgroundImage: "url('https://i.gifer.com/6njR.gif')",
                 backgroundRepeat: "repeat-x",
@@ -102,6 +106,9 @@ export const Planets = () => {
                 height: "100vh"
             }}
         >
+            <Link to="/" className="btn btn-primary mb-4 ml-4">
+                Volver a la Página Principal
+            </Link>
             <div
                 className="d-flex bg-dark text-light p-3"
                 style={{
@@ -181,7 +188,7 @@ export const Especies = () => {
 
     return (
         <div
-            className="d-flex justify-content-center align-items-center"
+            className="d-flex justify-content-center align-items-center flex-column"
             style={{
                 backgroundImage: "url('https://i.gifer.com/6njR.gif')",
                 backgroundRepeat: "repeat-x",
@@ -191,6 +198,9 @@ export const Especies = () => {
                 height: "100vh"
             }}
         >
+            <Link to="/" className="btn btn-primary mb-4 ml-4">
+                Volver a la Página Principal
+            </Link>
             <div
                 className="d-flex bg-dark text-light p-3"
                 style={{
@@ -301,7 +311,7 @@ export const Vehiculos = () => {
 
     return (
         <div
-            className="d-flex justify-content-center align-items-center"
+            className="d-flex justify-content-center align-items-center flex-column"
             style={{
                 backgroundImage: "url('https://i.gifer.com/6njR.gif')",
                 backgroundRepeat: "repeat-x",
@@ -311,6 +321,9 @@ export const Vehiculos = () => {
                 height: "100vh"
             }}
         >
+            <Link to="/" className="btn btn-primary mb-4 ml-4">
+                Volver a la Página Principal
+            </Link>
             <div
                 className="d-flex bg-dark text-light p-3"
                 style={{
@@ -340,7 +353,7 @@ export const Vehiculos = () => {
                     />
                 </div>
 
-                {/* Contenedor de la tarjeta */}
+
                 <div
                     className="card text-light bg-dark"
                     style={{
@@ -399,7 +412,7 @@ export const Naves = () => {
 
     return (
         <div
-            className="d-flex justify-content-center align-items-center"
+            className="d-flex justify-content-center align-items-center flex-column"
             style={{
                 backgroundImage: "url('https://i.gifer.com/6njR.gif')",
                 backgroundRepeat: "repeat-x",
@@ -409,6 +422,9 @@ export const Naves = () => {
                 height: "100vh"
             }}
         >
+            <Link to="/" className="btn btn-primary mb-4 ml-4">
+                Volver a la Página Principal
+            </Link>
             <div
                 className="d-flex bg-dark text-light p-3"
                 style={{
@@ -416,7 +432,7 @@ export const Naves = () => {
                     boxShadow: "0 8px 16px rgba(0,0,0,0.6)"
                 }}
             >
-                {/* Contenedor de la imagen */}
+
                 <div
                     className="me-3 d-flex align-items-center"
                     style={{
@@ -438,7 +454,7 @@ export const Naves = () => {
                     />
                 </div>
 
-                {/* Contenedor de la tarjeta */}
+
                 <div
                     className="card text-light bg-dark"
                     style={{
