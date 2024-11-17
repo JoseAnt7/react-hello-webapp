@@ -4,9 +4,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 			option: '',
 			wars: [],
 			people: {},
+			ruta_img: ''
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
+			setImg: (texto) => {
+				setStore({ ruta_img: texto })
+				console.log(getStore().ruta_img);
+			},
+			getImg: () => {
+				return getStore().ruta_img;
+			},
+			setOption: (texto) => {
+				setStore({ option: texto })
+				console.log(getStore().option);
+			},
+			getOption: () => {
+				return getStore().option;
+			},
 			obtener_datos_personajes: async () => {
 				fetch("https://www.swapi.tech/api/people/")
 					.then(response => response.json())
@@ -50,7 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			obtener_detalle_especies: async (id) => {
 				fetch(`https://www.swapi.tech/api/species/${id}`)
 					.then(response => response.json())
-					.then(data => { setStore({ people: data.results }); })
+					.then(data => { setStore({ people: data.result.properties }); })
 					.catch(error => console.error("Ha ocurrido un error" + error)
 					)
 			},
@@ -64,7 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			obtener_detalles_naves: async (id) => {
 				fetch(`https://www.swapi.tech/api/starships/${id}`)
 					.then(response => response.json())
-					.then(data => { setStore({ people: data.results }); })
+					.then(data => { setStore({ people: data.result.properties }); })
 					.catch(error => console.error("Ha ocurrido un error" + error)
 					)
 			},
@@ -78,7 +92,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			obtener_detalles_vehiculos: async (id) => {
 				fetch(`https://www.swapi.tech/api/vehicles/${id}`)
 					.then(response => response.json())
-					.then(data => { setStore({ people: data.results }); })
+					.then(data => { setStore({ people: data.result.properties }); })
 					.catch(error => console.error("Ha ocurrido un error" + error)
 					)
 			},

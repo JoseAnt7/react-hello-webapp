@@ -2,21 +2,46 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const Card_Template = ({ uid, nombre }) => {
+export const Card_Template = ({ uid, nombre, img }) => {
     const navigate = useNavigate();
 
     const { store, actions } = useContext(Context);
 
     const handleLearnMore = () => {
-        actions.obtener_detalle_personaje(uid);
-        navigate(`/people/${uid}`);
+        switch (actions.getOption()) {
+            case 'PERSONAJES':
+                actions.obtener_detalle_personaje(uid);
+                navigate(`/people/${uid}`);
+                break;
+            case 'LOCALIZACIONES':
+                actions.obtener_detalle_planeta(uid);
+                navigate(`/planets/${uid}`);
+                break;
+
+            case 'ESPECIES':
+                actions.obtener_detalle_especies(uid);
+                navigate(`/species/${uid}`);
+                break;
+
+            case 'VEHICULOS':
+                actions.obtener_detalles_vehiculos(uid);
+                navigate(`/vehicles/${uid}`);
+                break;
+
+            case 'NAVES':
+                actions.obtener_detalles_naves(uid);
+                navigate(`/starships/${uid}`);
+                break;
+            default:
+                break;
+        }
 
     };
 
     return (
         <div className="card shadow-sm border-0 rounded" style={{ width: "13rem", height: "14rem", overflow: "hidden" }}>
             <img
-                src={`https://starwars-visualguide.com/assets/img/characters/${uid}.jpg`}
+                src={`${img}` + `${uid}` + `.jpg`}
                 className="card-img-top"
                 alt="Card image"
                 style={{ height: "7rem", objectFit: "cover", borderRadius: "0.5rem 0.5rem 0 0" }}

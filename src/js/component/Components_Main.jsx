@@ -5,7 +5,7 @@ import { Context } from "../store/appContext.js";
 
 export const Sidebar = ({ onMenuClick }) => {
 
-    const { actions } = useContext(Context);
+    const { actions, store } = useContext(Context);
 
     return (
         <div className="d-flex flex-column flex-shrink-0 p-3 bg-dark text-white" style={{ width: "280px", height: "100vh" }}>
@@ -19,6 +19,8 @@ export const Sidebar = ({ onMenuClick }) => {
                     <a href="#" className="nav-link active" onClick={() => {
                         onMenuClick('PERSONAJES');
                         actions.obtener_datos_personajes();
+                        actions.setOption('PERSONAJES');
+                        actions.setImg(`https://starwars-visualguide.com/assets/img/characters/`);
                     }}>
                         PERSONAJES
                     </a>
@@ -27,6 +29,8 @@ export const Sidebar = ({ onMenuClick }) => {
                     <a href="#" className="nav-link text-white" onClick={() => {
                         onMenuClick('LOCALIZACIONES');
                         actions.obtener_datos_planetas();
+                        actions.setOption('LOCALIZACIONES');
+                        actions.setImg(`https://starwars-visualguide.com/assets/img/planets/`);
 
                     }}>
                         <svg className="bi me-2" width="16" height="16"><use xlinkHref="#grid"></use></svg>
@@ -37,6 +41,8 @@ export const Sidebar = ({ onMenuClick }) => {
                     <a href="#" className="nav-link text-white" onClick={() => {
                         onMenuClick('ESPECIES');
                         actions.obtener_datos_especies();
+                        actions.setOption('ESPECIES');
+                        actions.setImg(`https://starwars-visualguide.com/assets/img/species/`);
                     }}>
                         <svg className="bi me-2" width="16" height="16"><use xlinkHref="#people-circle"></use></svg>
                         ESPECIES
@@ -46,6 +52,8 @@ export const Sidebar = ({ onMenuClick }) => {
                     <a href="#" className="nav-link text-white" onClick={() => {
                         onMenuClick('VEHICULOS');
                         actions.obtener_datos_vehiculos();
+                        actions.setOption('VEHICULOS');
+                        actions.setImg(`https://starwars-visualguide.com/assets/img/vehicles/`);
 
                     }}>
                         <svg className="bi me-2" width="16" height="16"><use xlinkHref="#people-circle"></use></svg>
@@ -56,6 +64,8 @@ export const Sidebar = ({ onMenuClick }) => {
                     <a href="#" className="nav-link text-white" onClick={() => {
                         onMenuClick('NAVES');
                         actions.obtener_datos_naves();
+                        actions.setOption('NAVES');
+                        actions.setImg(`https://starwars-visualguide.com/assets/img/starships/`);
                     }}>
                         <svg className="bi me-2" width="16" height="16"><use xlinkHref="#people-circle"></use></svg>
                         NAVES
@@ -65,6 +75,8 @@ export const Sidebar = ({ onMenuClick }) => {
                     <a href="#" className="nav-link text-white" onClick={() => {
                         onMenuClick('PELICULAS');
                         actions.obtener_datos_peliculas();
+                        actions.setOption('PELICULAS');
+                        actions.setImg(`https://starwars-visualguide.com/assets/img/films/`);
                     }}>
                         <svg className="bi me-2" width="16" height="16"><use xlinkHref="#people-circle"></use></svg>
                         PELÍCULAS
